@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenota | Game Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Stili specifici per la pagina prenota */
+        .booking-container {
+            max-width: 800px;
+            margin: 150px auto 80px;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--neon-blue); }
+        select, input {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .price-summary {
+            background: rgba(168, 255, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px dashed var(--neon-green);
+            text-align: center;
+            margin-top: 30px;
+        }
+        #total-price { font-size: 2rem; color: var(--neon-green); font-weight: 800; }
+        .btn-confirm {
+            width: 100%;
+            background: var(--neon-green);
+            color: black;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-confirm:hover { box-shadow: 0 0 30px rgba(168, 255, 0, 0.4); transform: scale(1.02); }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="scrolled">
+        <a href="index.html" class="logo">
+            <img src="https://via.placeholder.com/150x40/00d4ff/ffffff?text=GAME+SPOT" alt="Game Spot Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#chi-siamo">Torna alla Home</a></li>
+        </ul>
+    </nav>
+
+    <div class="booking-container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Prenota la tua sessione</h2>
+        <p style="color: var(--text-dim); margin-bottom: 40px;">Seleziona l'attività e l'orario. Il prezzo si aggiornerà automaticamente.</p>
+
+        <form id="booking-form">
+            <div class="form-group">
+                <label>Cosa vuoi fare?</label>
+                <select id="activity" required onchange="calculateTotal()">
+                    <option value="10">Gaming PC/Console (10€/ora)</option>
+                    <option value="15">Bowling (15€/ora per pista)</option>
+                    <option value="12">Biliardo (12€/ora)</option>
+                    <option value="150">Festa di Compleanno (Pacchetto Base 150€)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quante ore?</label>
+                <select id="hours" required onchange="calculateTotal()">
+                    <option value="1">1 Ora</option>
+                    <option value="2">2 Ore</option>
+                    <option value="3">3 Ore</option>
+                    <option value="5">5 Ore (Scontato)</option>
+                </select>
+            </div>
+
+            <div class="grid-container" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Orario di inizio</label>
+                    <input type="time" id="time" required>
+                </div>
+            </div>
+
+            <div class="price-summary">
+                <p>Totale stimato</p>
+                <div id="total-price">10€</div>
+            </div>
+
+            <button type="submit" class="btn-confirm">CONFERMA PRENOTAZIONE</button>
+        </form>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const activityPrice = parseInt(document.getElementById('activity').value);
+            const hours = parseInt(document.getElementById('hours').value);
+            let total = 0;
+
+            if (activityPrice === 150) {
+                // Prezzo fisso per compleanno
+                total = activityPrice;
+                document.getElementById('hours').disabled = true;
+            } else {
+                document.getElementById('hours').disabled = false;
+                total = activityPrice * hours;
+                // Applica sconto se prenota 5 ore
+                if (hours === 5) total = total * 0.8; 
+            }
+
+            document.getElementById('total-price').innerText = total + "€";
+        }
+
+        document.getElementById('booking-form').onsubmit = function(e) {
+            e.preventDefault();
+            alert("Richiesta inviata! Ti contatteremo via email per la conferma definitiva.");
+        };
+    </script>
+
+</body>
+</html>
