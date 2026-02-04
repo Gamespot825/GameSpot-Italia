@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D VR Experience | Game Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --dnd-gold: #ffcc00;
+            --dnd-purple: #6a1b9a;
+        }
+
+        body {
+            background: #050505 !important;
+            color: white;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* HERO SECTION SPECIFICA */
+        .dnd-hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), #050505), 
+                        url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .dnd-title {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 5rem;
+            color: var(--dnd-gold);
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .dnd-subtitle {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* SEZIONE DESCRIZIONE */
+        .content-section {
+            max-width: 1000px;
+            margin: -100px auto 100px;
+            background: rgba(20, 20, 30, 0.95);
+            padding: 60px;
+            border-radius: 40px;
+            border: 1px solid var(--dnd-gold);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 10;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid var(--dnd-gold);
+        }
+
+        .feature-card h3 {
+            color: var(--dnd-gold);
+            margin-top: 0;
+        }
+
+        /* CALL TO ACTION */
+        .dnd-cta {
+            text-align: center;
+            padding: 80px 5%;
+            background: linear-gradient(to bottom, #050505, var(--dnd-purple), #050505);
+        }
+
+        .btn-dnd {
+            background: var(--dnd-gold);
+            color: black;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+        }
+
+        .btn-dnd:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .dnd-title { font-size: 3rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .content-section { padding: 30px; margin-top: -50px; }
+        }
+
+          .site-footer {
+        background: rgba(7, 9, 15, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 60px 5% 30px;
+        margin-top: auto; /* Lo spinge in basso nei layout flex */
+    }
+
+    .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .footer-brand p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .footer-column h4 {
+        color: var(--neon-blue);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--neon-green);
+        padding-left: 5px;
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-bottom p {
+        color: rgba(255,255,255,0.3);
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.5;
+        transition: 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-icons a:hover {
+        opacity: 1;
+        color: var(--neon-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-booking" style="position: fixed; top:0; width:100%; display:flex; justify-content:space-between; padding: 25px 5%; z-index:1000; box-sizing: border-box;">
+        <a href="index.html" class="btn-back-home" style="background: var(--neon-green); color:black; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:800;">TORNA ALLA HOME</a>
+       <h2 style="font-weight: 800; color: white; letter-spacing: -1px;">
+                <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                <span style="color: var(--neon-blue);">SPOT</span>
+            </h2>
+    </nav>
+
+    <header class="dnd-hero">
+        <h1 class="dnd-title">D&D VR EXPERIENCE</h1>
+        <p class="dnd-subtitle">Oltre i dadi. Oltre l'immaginazione.</p>
+    </header>
+
+    <main class="content-section">
+        <h2 style="color:white; font-size: 2.5rem; text-align:center;">L'Evoluzione del Gioco di Ruolo</h2>
+        <p style="color:var(--text-dim); font-size: 1.2rem; line-height:1.8; text-align:center;">
+            Dimentica di immaginare il dungeon. Entraci. Grazie alla potenza dei visori VR di ultima generazione, Game Spot ti offre la prima esperienza di Dungeons & Dragons immersiva al 100%. 
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Ambienti 3D Reali</h3>
+                <p>Esplora taverne, foreste oscure e castelli in rovina a 360 gradi. Ogni dettaglio è vivo attorno a te.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Avatar Personalizzati</h3>
+                <p>Guarda i tuoi compagni di squadra come veri guerrieri, maghi o ladri. Gesticola e interagisci fisicamente.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Dadi Digitali</h3>
+                <p>Lancia i dadi nel mondo virtuale e guarda il risultato influenzare l'ambiente circostante in tempo reale.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Master Dedicato</h3>
+                <p>Un nostro Dungeon Master esperto guiderà la tua sessione, controllando mostri ed effetti atmosferici.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="dnd-cta">
+        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">Sei pronto a scrivere la tua leggenda?</h2>
+        <a href="prenotazione.html" class="btn-dnd">PRENOTA LA SESSIONE (30€)</a>
+    </section>
+
+    <footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h2 style="font-weight: 800; color: white; letter-spacing: -1px;">
+                <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                <span style="color: var(--neon-blue);">SPOT</span>
+            </h2>
+            <p>Il punto di riferimento per il gaming ad Aprilia. PC ad alte prestazioni, bowling, biliardo e un'area food dedicata.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Sito</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="index.html#attivita">Attività</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Utility</h4>
+            <ul class="footer-links">
+                <li><a href="prenotazione.html">Prenota Ora</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
+                <li><a href="faq.html">Domande (FAQ)</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Vieni a trovarci</h4>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px;">
+                Via Roma 19, Aprilia (LT)<br>
+                Aperti tutti i giorni: 15:00 - 02:00
+            </p>
+            <p style="font-size: 0.9rem; color: var(--neon-blue);">info.gamespot.aprilia@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Game Spot Aprilia. Tutti i diritti riservati.</p>
+        <div class="social-icons">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Discord</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

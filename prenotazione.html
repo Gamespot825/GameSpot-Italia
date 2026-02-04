@@ -6,132 +6,497 @@
     <title>Prenota | Game Spot</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        /* Stili specifici per la pagina prenota */
-        .booking-container {
-            max-width: 800px;
-            margin: 150px auto 80px;
-            padding: 40px;
-            background: var(--bg-card);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        body {
+            background: var(--bg-dark) !important;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        .form-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--neon-blue); }
-        select, input {
+
+        /* NAVBAR TRASPARENTE COMPLETA */
+        .nav-booking {
+            position: fixed;
+            top: 0;
             width: 100%;
-            padding: 15px;
-            background: var(--bg-dark);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-            border-radius: 10px;
-            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
+            box-sizing: border-box;
         }
-        .price-summary {
-            background: rgba(168, 255, 0, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px dashed var(--neon-green);
-            text-align: center;
-            margin-top: 30px;
+
+        .nav-booking.scrolled {
+            background: rgba(11, 13, 23, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        #total-price { font-size: 2rem; color: var(--neon-green); font-weight: 800; }
-        .btn-confirm {
-            width: 100%;
-            background: var(--neon-green);
-            color: black;
-            padding: 20px;
-            border: none;
-            border-radius: 10px;
+
+        .btn-back-home {
+            background-color: var(--neon-green) !important;
+            color: #000 !important;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: 800;
-            cursor: pointer;
-            margin-top: 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
-        .btn-confirm:hover { box-shadow: 0 0 30px rgba(168, 255, 0, 0.4); transform: scale(1.02); }
-    </style>
+
+        /* Link della Navbar */
+        .booking-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .booking-nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .booking-nav-links a:hover {
+            opacity: 1;
+            color: var(--neon-blue);
+        }
+
+        /* LAYOUT ORIZZONTALE */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 150px 5% 80px;
+            box-sizing: border-box;
+        }
+
+        .booking-container {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--bg-card);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+        }
+
+        /* FORM GRID A DUE COLONNE */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        label {
+            color: var(--neon-blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 18px;
+            background: rgba(11, 13, 23, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 15px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        /* FOOTER DEL FORM */
+        .price-footer {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #total-price { font-size: 3.5rem; color: var(--neon-green); font-weight: 800; }
+
+        #form-status {
+            grid-column: span 2;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            font-weight: 600;
+        }
+
+        .btn-confirm {
+            background: var(--neon-green);
+            color: black;
+            padding: 22px 60px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-confirm:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--neon-green); }
+
+         .site-footer {
+        background: rgba(7, 9, 15, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 60px 5% 30px;
+        margin-top: auto; /* Lo spinge in basso nei layout flex */
+    }
+
+    .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .footer-brand p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .footer-column h4 {
+        color: var(--neon-blue);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--neon-green);
+        padding-left: 5px;
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-bottom p {
+        color: rgba(255,255,255,0.3);
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.5;
+        transition: 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-icons a:hover {
+        opacity: 1;
+        color: var(--neon-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
 </head>
 <body>
 
-    <nav id="navbar" class="scrolled">
-        <a href="index.html" class="logo">
-            <img src="https://via.placeholder.com/150x40/00d4ff/ffffff?text=GAME+SPOT" alt="Game Spot Logo">
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html#chi-siamo">Torna alla Home</a></li>
+    <nav class="nav-booking" id="navbar">
+        <a href="index.html" class="btn-back-home">Torna alla Home</a>
+        
+        <ul class="booking-nav-links">
+            <li><a href="regolamento.html">Regolamento</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
         </ul>
+
+        <div style="width: 150px;" class="nav-spacer"></div>
     </nav>
 
-    <div class="booking-container">
-        <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Prenota la tua sessione</h2>
-        <p style="color: var(--text-dim); margin-bottom: 40px;">Seleziona l'attività e l'orario. Il prezzo si aggiornerà automaticamente.</p>
+    <div class="main-wrapper">
+        <div class="booking-container">
+            <h2 style="font-size: 2.8rem; margin: 0; color: white;">Prenota la tua Postazione</h2>
+            <p style="color: var(--text-dim);">Tutti i campi sono obbligatori per confermare la sessione.</p>
 
-        <form id="booking-form">
-            <div class="form-group">
-                <label>Cosa vuoi fare?</label>
-                <select id="activity" required onchange="calculateTotal()">
-                    <option value="10">Gaming PC/Console (10€/ora)</option>
-                    <option value="15">Bowling (15€/ora per pista)</option>
-                    <option value="12">Biliardo (12€/ora)</option>
-                    <option value="150">Festa di Compleanno (Pacchetto Base 150€)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Quante ore?</label>
-                <select id="hours" required onchange="calculateTotal()">
-                    <option value="1">1 Ora</option>
-                    <option value="2">2 Ore</option>
-                    <option value="3">3 Ore</option>
-                    <option value="5">5 Ore (Scontato)</option>
-                </select>
-            </div>
-
-            <div class="grid-container" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+            <form id="booking-form" class="form-grid" action="https://formspree.io/f/mjgonjwb" method="POST">
+                
                 <div class="form-group">
-                    <label>Data</label>
-                    <input type="date" id="date" required>
+                    <label>Nome e Cognome</label>
+                    <input type="text" name="full_name" id="full_name" placeholder="Esempio: Marco Rossi">
                 </div>
+
                 <div class="form-group">
-                    <label>Orario di inizio</label>
-                    <input type="time" id="time" required>
+                    <label>Email</label>
+                    <input type="email" name="email" id="email" placeholder="latua@email.com">
                 </div>
-            </div>
 
-            <div class="price-summary">
-                <p>Totale stimato</p>
-                <div id="total-price">10€</div>
-            </div>
+                <div class="form-group">
+                    <label>Esperienza</label>
+                    <select name="activity" id="activity" onchange="calculateTotal()">
+                        <option value="10">Gaming PC / Console (10€/h)</option>
+                        <option value="15">Neon Bowling (15€/h)</option>
+                        <option value="12">Biliardo Professionale (12€/h)</option>
+                        <option value="30">D&D VR Experience (30€)</option>
+                        <option value="150">Festa di Compleanno (150€)</option>
+                    </select>
+                </div>
 
-            <button type="submit" class="btn-confirm">CONFERMA PRENOTAZIONE</button>
-        </form>
+                <div class="form-group">
+                    <label>Durata</label>
+                    <select name="hours" id="hours" onchange="calculateTotal()">
+                        <option value="1">1 Ora</option>
+                        <option value="2">2 Ore</option>
+                        <option value="3">3 Ore</option>
+                        <option value="5">5 Ore (Sconto 20%)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Giorno</label>
+                    <input type="date" name="date" id="date">
+                </div>
+
+                <div class="form-group">
+                    <label>Orario di arrivo</label>
+                    <input type="time" name="time" id="time">
+                </div>
+
+                <input type="hidden" name="total_price_final" id="hidden-total">
+
+                <div id="form-status" class="full-width"></div>
+
+                <div class="price-footer">
+                    <div>
+                        <p style="color: var(--text-dim); margin: 0;">Prezzo Finale</p>
+                        <div id="total-price">10€</div>
+                    </div>
+                    <button type="submit" class="btn-confirm">CONFERMA PRENOTAZIONE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <h2 style="font-weight: 800; color: white; letter-spacing: -1px;">
+                <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                <span style="color: var(--neon-blue);">SPOT</span>
+            </h2>
+            <p>Il punto di riferimento per il gaming ad Aprilia. PC ad alte prestazioni, bowling, biliardo e un'area food dedicata.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Sito</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="index.html#attivita">Attività</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Utility</h4>
+            <ul class="footer-links">
+                <li><a href="prenotazione.html">Prenota Ora</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
+                <li><a href="faq.html">Domande (FAQ)</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Vieni a trovarci</h4>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px;">
+                Via Roma 19, Aprilia (LT)<br>
+                Aperti tutti i giorni: 15:00 - 02:00
+            </p>
+            <p style="font-size: 0.9rem; color: var(--neon-blue);">info.gamespot.aprilia@gmail.com</p>
+        </div>
     </div>
 
+    <div class="footer-bottom">
+        <p>&copy; 2026 Game Spot Aprilia. Tutti i diritti riservati.</p>
+        <div class="social-icons">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Discord</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+
     <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
         function calculateTotal() {
-            const activityPrice = parseInt(document.getElementById('activity').value);
-            const hours = parseInt(document.getElementById('hours').value);
+            const act = parseInt(document.getElementById('activity').value);
+            const hrsElem = document.getElementById('hours');
+            const hrs = parseInt(hrsElem.value);
             let total = 0;
 
-            if (activityPrice === 150) {
-                // Prezzo fisso per compleanno
-                total = activityPrice;
-                document.getElementById('hours').disabled = true;
+            if (act === 150 || act === 30) {
+                total = act;
+                hrsElem.disabled = true;
+                hrsElem.style.opacity = "0.3";
             } else {
-                document.getElementById('hours').disabled = false;
-                total = activityPrice * hours;
-                // Applica sconto se prenota 5 ore
-                if (hours === 5) total = total * 0.8; 
+                hrsElem.disabled = false;
+                hrsElem.style.opacity = "1";
+                total = act * hrs;
+                if (hrs === 5) total *= 0.8;
+            }
+            document.getElementById('total-price').innerText = total + "€";
+            document.getElementById('hidden-total').value = total + "€";
+        }
+        window.onload = calculateTotal;
+
+        const form = document.getElementById('booking-form');
+        const status = document.getElementById('form-status');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fields = [
+                { id: 'full_name', label: 'Nome e Cognome' },
+                { id: 'email', label: 'Email' },
+                { id: 'date', label: 'Giorno' },
+                { id: 'time', label: 'Orario' }
+            ];
+
+            let missing = [];
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                if(!el.value.trim()) {
+                    missing.push(f.label);
+                    el.style.borderColor = "#ff4d4d";
+                } else {
+                    el.style.borderColor = "rgba(255,255,255,0.1)";
+                }
+            });
+
+            if(missing.length > 0) {
+                status.style.display = "block";
+                status.style.color = "#ff4d4d";
+                status.style.background = "rgba(255, 77, 77, 0.1)";
+                status.innerHTML = "Compila tutti i campi: " + missing.join(", ");
+                return;
             }
 
-            document.getElementById('total-price').innerText = total + "€";
-        }
+            status.style.display = "block";
+            status.style.color = "var(--neon-blue)";
+            status.style.background = "rgba(0, 212, 255, 0.1)";
+            status.innerHTML = "Invio prenotazione in corso...";
 
-        document.getElementById('booking-form').onsubmit = function(e) {
-            e.preventDefault();
-            alert("Richiesta inviata! Ti contatteremo via email per la conferma definitiva.");
-        };
+            const data = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    status.style.color = "var(--neon-green)";
+                    status.style.background = "rgba(168, 255, 0, 0.1)";
+                    status.innerHTML = "Prenotazione inviata! Ti contatteremo a breve.";
+                    form.reset();
+                    calculateTotal();
+                } else {
+                    status.innerHTML = "Errore durante l'invio.";
+                }
+            }).catch(error => { status.innerHTML = "Errore di connessione."; });
+        });
     </script>
-
 </body>
 </html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Game Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: var(--bg-dark) !important;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* NAVBAR TRASPARENTE */
+        .nav-faq {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 5%;
+            z-index: 1000;
+            background: transparent;
+            transition: 0.4s ease;
+            box-sizing: border-box;
+        }
+
+        .nav-faq.scrolled {
+            background: rgba(11, 13, 23, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-back-home {
+            background-color: var(--neon-green) !important;
+            color: #000 !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* LAYOUT FAQ */
+        .faq-wrapper {
+            flex: 1;
+            max-width: 800px;
+            margin: 150px auto 80px;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ACCORDION STYLE */
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-question::after {
+            content: '+';
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+            color: var(--neon-green);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-answer p {
+            padding: 20px 25px;
+            margin: 0;
+            color: var(--text-dim);
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Altezza massima per l'animazione */
+        }
+
+    .site-footer {
+        background: rgba(7, 9, 15, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 60px 5% 30px;
+        margin-top: auto; /* Lo spinge in basso nei layout flex */
+    }
+
+    .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-brand h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .footer-brand p {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .footer-column h4 {
+        color: var(--neon-blue);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--neon-green);
+        padding-left: 5px;
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .footer-bottom p {
+        color: rgba(255,255,255,0.3);
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.5;
+        transition: 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-icons a:hover {
+        opacity: 1;
+        color: var(--neon-blue);
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <nav class="nav-faq" id="navbar">
+        <a href="index.html" class="btn-back-home">Torna alla Home</a>
+        <ul class="nav-links" style="display: flex; list-style: none; gap: 30px; margin: 0; padding: 0;">
+            <li><a href="prenotazione.html" style="color: white; text-decoration: none; opacity: 0.7;">Prenota</a></li>
+            <li><a href="regolamento.html" style="color: white; text-decoration: none; opacity: 0.7;">Regolamento</a></li>
+            <li><a href="contatti.html" style="color: white; text-decoration: none; opacity: 0.7;">Contatti</a></li>
+        </ul>
+        <div style="width: 140px;"></div>
+    </nav>
+
+    <main class="faq-wrapper">
+        <div class="faq-header">
+            <h1>Domande Frequenti</h1>
+            <p style="color: var(--text-dim);">Tutto quello che devi sapere prima di entrare in gioco.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Devo per forza prenotare online?</div>
+            <div class="faq-answer">
+                <p>La prenotazione online è caldamente consigliata per assicurarti il posto, specialmente nel weekend. Tuttavia, accettiamo anche ingressi diretti se ci sono postazioni o piste libere.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Posso usare il mio account personale (Steam/Epic)?</div>
+            <div class="faq-answer">
+                <p>Assolutamente sì! Sulle nostre postazioni puoi loggare con i tuoi account per mantenere i tuoi progressi e le tue skin. Ricordati solo di effettuare il logout a fine sessione.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Qual è l'età minima per entrare?</div>
+            <div class="faq-answer">
+                <p>Non c'è un limite di età fisso, ma per i minori di 14 anni è richiesta la presenza o l'autorizzazione di un genitore per le sessioni serali.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Organizzate tornei competitivi?</div>
+            <div class="faq-answer">
+                <p>Sì! Ogni mese organizziamo tornei di League of Legends, FC24 e Valorant. Seguici sui social o controlla la sezione Community per le prossime date.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Come funzionano i rimborsi?</div>
+            <div class="faq-answer">
+                <p>In caso di annullamento della prenotazione con almeno 24 ore di preavviso, riceverai un rimborso del 100% sul metodo di pagamento originale.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+              <h2 style="font-weight: 800; color: white; letter-spacing: -1px;">
+                <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                <span style="color: var(--neon-blue);">SPOT</span>
+            </h2>
+            <p>Il punto di riferimento per il gaming ad Aprilia. PC ad alte prestazioni, bowling, biliardo e un'area food dedicata.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Sito</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home Page</a></li>
+                <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="index.html#attivita">Attività</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Utility</h4>
+            <ul class="footer-links">
+                <li><a href="prenotazione.html">Prenota Ora</a></li>
+                <li><a href="regolamento.html">Regolamento</a></li>
+                <li><a href="faq.html">Domande (FAQ)</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Vieni a trovarci</h4>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px;">
+                Via Roma 19, Aprilia (LT)<br>
+                Aperti tutti i giorni: 15:00 - 02:00
+            </p>
+            <p style="font-size: 0.9rem; color: var(--neon-blue);">info.gamespot.aprilia@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Game Spot Aprilia. Tutti i diritti riservati.</p>
+        <div class="social-icons">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">Discord</a>
+            <a href="#">WhatsApp</a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Gestione Trasparenza Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        // Gestione Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Chiude le altre FAQ aperte (opzionale)
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) otherItem.classList.remove('active');
+                });
+                
+                // Apre/Chiude quella cliccata
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
