@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angolo Bar & Food | Game Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --bar-orange: #ff9900;
+            --bar-amber: #ffcc00;
+        }
+
+        body {
+            background: #050505 !important;
+            color: white;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .bar-hero {
+            position: relative;
+            height: 70vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(5,5,5,1)), 
+                        url('bar.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .bar-title {
+            font-size: 5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--bar-orange);
+            text-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: -60px auto 80px;
+            padding: 0 5%;
+        }
+
+        .info-card {
+            background: rgba(30, 20, 10, 0.9);
+            padding: 35px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--bar-amber);
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 { color: var(--bar-amber); margin: 10px 0; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+        .info-card p { font-size: 1.8rem; font-weight: 800; margin: 0; }
+
+        .desc-section {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            padding: 0 5%;
+        }
+
+        .desc-content { flex: 1; }
+        .desc-content h2 { font-size: 3rem; margin-bottom: 20px; }
+        .desc-content p { color: var(--text-dim); line-height: 1.8; font-size: 1.1rem; }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .specs-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specs-list span { color: var(--bar-orange); font-weight: 600; }
+
+        .bar-cta {
+            background: linear-gradient(135deg, #1a1000, #050505);
+            margin: 0 5% 100px;
+            padding: 80px;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 153, 0, 0.1);
+        }
+
+        .btn-bar {
+            background: var(--bar-orange);
+            color: #050505;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-bar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 153, 0, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .bar-title { font-size: 3rem; }
+            .desc-section { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-booking" style="position: fixed; top:0; width:100%; display:flex; justify-content:space-between; padding: 25px 5%; z-index:1000; box-sizing: border-box; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);">
+        <a href="index.html" class="btn-back-home" style="background: var(--neon-green); color:black; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:800; font-size: 0.8rem;">TORNA ALLA HOME</a>
+       <div style="color:rgb(234, 11, 11); font-weight:800;">GAME <span style="color:var(--neon-blue);">SPOT</span></div>
+    </nav>
+
+    <header class="bar-hero">
+        <h1 class="bar-title">Food & Drink</h1>
+        <p style="letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase; position: relative; z-index: 2;">Ricarica le energie con stile</p>
+    </header>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Specialità</h3>
+            <p>Cocktails & Burgers</p>
+        </div>
+        <div class="info-card">
+            <h3>Happy Hour</h3>
+            <p>18:00 - 20:00</p>
+        </div>
+        <div class="info-card">
+            <h3>Servizio</h3>
+            <p>Anche al Tavolo</p>
+        </div>
+    </div>
+
+    <section class="desc-section">
+        <div class="desc-content">
+            <h2>Gusto e <span style="color: var(--bar-orange);">Socialità.</span></h2>
+            <p>Non è solo una pausa dal gioco, è un'esperienza culinaria urbana. Il nostro angolo bar offre dai drink artigianali agli snack gourmet, perfetti per una pausa veloce tra una partita di biliardo e uno strike al bowling.</p>
+            
+            <ul class="specs-list">
+                <li>Menu: <span>Burgers, Pinsa & Snacks</span></li>
+                <li>Drinks: <span>Mixology & Birre alla spina</span></li>
+                <li>Atmosfera: <span>Urban Chillout</span></li>
+                <li>Eventi: <span>Live Match & DJ Set</span></li>
+            </ul>
+        </div>
+        <div style="flex: 1;">
+            <img src="bar2.jpg" alt="Angolo Bar" style="width: 100%; border-radius: 30px; border: 1px solid var(--bar-orange);">
+        </div>
+    </section>
+
+    <div class="bar-cta">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Prenota un tavolo per cena</h2>
+        <p style="color: var(--text-dim); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Organizza la tua serata perfetta: gioco, divertimento e ottimo cibo.</p>
+        <a href="contatti.html" class="btn-bar">Contattaci per Info</a>
+    </div>
+
+    <footer class="site-footer" style="background: rgba(7, 9, 15, 0.95); padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto;">
+            <div class="footer-brand">
+                <h2 style="font-weight: 800; color: white;">
+                    <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                    <span style="color: var(--neon-blue);">SPOT</span>
+                </h2>
+                <p style="color: #666; max-width: 300px;">Il cuore pulsante del divertimento ad Aprilia.</p>
+            </div>
+            <ul style="list-style:none; padding:0; display: flex; gap: 30px;">
+                <li><a href="index.html" style="color:#666; text-decoration:none;">Home</a></li>
+                <li><a href="bowling.html" style="color:#666; text-decoration:none;">Bowling</a></li>
+                <li><a href="biliardo.html" style="color:#666; text-decoration:none;">Biliardo</a></li>
+                <li><a href="contatti.html" style="color:#666; text-decoration:none;">Contatti</a></li>
+            </ul>
+        </div>
+        <div style="text-align:center; margin-top: 50px; color: #333; font-size: 0.8rem;">&copy; 2026 Game Spot Aprilia.</div>
+    </footer>
+
+</body>
+</html>

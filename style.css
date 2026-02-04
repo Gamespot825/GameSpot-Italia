@@ -5,6 +5,8 @@
     --neon-purple: #8a2be2;
     --neon-green: #a8ff00;
     --neon-red: #ff0033;
+    --neon-orange: #ff6f00;
+    --neon-pink: #e22bd0;
     --text-main: #ffffff;
     --text-dim: #a0a0a0;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -93,6 +95,10 @@ nav.scrolled {
     transform: translateY(-2px);
 }
 
+/* =========================================
+     CARRELLO SLIDER
+   ========================================= */
+
 .slider-container {
     position: relative;
     width: 100%;
@@ -113,12 +119,15 @@ nav.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* ERRORE: Se la slide ha z-index 1 anche quando è attiva, le frecce o il contenuto potrebbero non rispondere */
     z-index: 1;
+    pointer-events: none; /* Impedisce di cliccare slide invisibili */
 }
 
 .slide.active {
     opacity: 1;
-    z-index: 2;
+    z-index: 10; /* Aumentato per stare sopra le slide inattive */
+    pointer-events: auto; /* Riabilita il clic solo sulla slide visibile */
 }
 
 .slide-video {
@@ -129,14 +138,26 @@ nav.scrolled {
     height: 100%;
     object-fit: cover; 
     filter: brightness(0.4); 
+    pointer-events: none; /* Fondamentale: il video non deve "mangiare" il clic destinato al link */
 }
 
 .slide-content {
     position: relative;
-    z-index: 10;
+    z-index: 100;
     text-align: center;
     color: #fff;
-    cursor: pointer;
+    cursor: pointer; /* Fondamentale: fa apparire la manina quando passi sopra */
+    transition: transform 0.3s ease;
+}
+
+.slide-content:hover {
+    transform: scale(1.05);
+}
+
+.slide-content a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .nav-arrow {
@@ -149,13 +170,13 @@ nav.scrolled {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    z-index: 999; 
+    z-index: 1000; /* Superiore allo z-index della slide active */
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     font-size: 1.5rem;
-    transition: var(--transition);
+    transition: 0.3s; /* Sostituito var con valore fisso per sicurezza */
     pointer-events: auto; 
 }
 
@@ -164,8 +185,6 @@ nav.scrolled {
     box-shadow: 0 0 15px var(--neon-blue);
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
 /* =========================================
     HERO SECTION
    ========================================= */
@@ -307,6 +326,9 @@ section {
 .neon-blue { border-bottom: 5px solid var(--neon-blue); }
 .neon-purple { border-bottom: 5px solid var(--neon-purple); }
 .neon-green { border-bottom: 5px solid var(--neon-green); }
+.neon-orange { border-bottom: 5px solid var(--neon-orange); }
+.neon-red { border-bottom: 5px solid var(--neon-red); }
+.neon-pink { border-bottom: 5px solid var(--neon-pink); }
 
 /* =========================================
     COMPETIZIONI (TORNEI)

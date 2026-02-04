@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Bowling | Game Spot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00f2ff;
+        }
+
+        body {
+            background: #050505 !important;
+            color: white;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .bowling-hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.7), #050505), 
+                        url('bowling-pista.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .bowling-title {
+            font-size: 5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+        }
+
+        /* INFO GRID (UGUALE A BILIARDO) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: -60px auto 80px;
+            padding: 0 5%;
+        }
+
+        .info-card {
+            background: rgba(20, 10, 20, 0.9);
+            padding: 35px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 { color: var(--neon-cyan); margin: 10px 0; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+        .info-card p { font-size: 1.8rem; font-weight: 800; margin: 0; }
+
+
+        .desc-section {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            padding: 0 5%;
+        }
+
+        .desc-content { flex: 1; }
+        .desc-content h2 { font-size: 3rem; margin-bottom: 20px; }
+        .desc-content p { color: var(--text-dim); line-height: 1.8; font-size: 1.1rem; }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .specs-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .specs-list span { color: var(--neon-cyan); font-weight: 600; }
+
+        .bowling-cta {
+            background: linear-gradient(135deg, #1a001a, #050505);
+            margin: 0 5% 100px;
+            padding: 80px;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 255, 0.1);
+        }
+
+        .btn-bowling {
+            background: var(--neon-cyan);
+            color: #050505;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-bowling:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+        }
+
+        @media (max-width: 900px) {
+            .bowling-title { font-size: 3rem; }
+            .desc-section { flex-direction: column; text-align: center; }
+            .bowling-cta { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-booking" style="position: fixed; top:0; width:100%; display:flex; justify-content:space-between; padding: 25px 5%; z-index:1000; box-sizing: border-box; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);">
+        <a href="index.html" class="btn-back-home" style="background: var(--neon-green); color:black; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:800; font-size: 0.8rem;">TORNA ALLA HOME</a>
+        <div style="color:rgb(234, 11, 11); font-weight:800;">GAME <span style="color:var(--neon-blue);">SPOT</span></div>
+    </nav>
+
+    <header class="bowling-hero">
+        <h1 class="bowling-title">Bowling</h1>
+        <p style="letter-spacing: 4px; color: var(--text-dim); text-transform: uppercase;">Strike in un'altra dimensione</p>
+    </header>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Piste</h3>
+            <p>10</p>
+        </div>
+        <div class="info-card">
+            <h3>Tariffa</h3>
+            <p>15€ / Ora</p>
+        </div>
+        <div class="info-card">
+            <h3>Effetti</h3>
+            <p>Blacklight UV</p>
+        </div>
+    </div>
+
+    <section class="desc-section">
+        <div class="desc-content">
+            <h2>Velocità e <span style="color: var(--neon-pink);">Adrenalina.</span></h2>
+            <p>Le nostre piste sintetiche di ultima generazione, abbinate a un sistema di illuminazione UV e musica dinamica, rendono il bowling a Game Spot un'esperienza unica ad Aprilia. Ideale per sfide competitive o serate di puro divertimento.</p>
+            
+            <ul class="specs-list">
+                <li>Tecnologia: <span>Punteggio Automatico</span></li>
+                <li>Atmosfera: <span>Glow-in-the-dark UV</span></li>
+                <li>Per i piccoli: <span>Sponde (Bumpers) incluse</span></li>
+                <li>Comfort: <span>Divanetti & Service Lounge</span></li>
+            </ul>
+        </div>
+        <div style="flex: 1;">
+            <img src="bowling.avif" alt="Bowling" style="width: 100%; border-radius: 30px; border: 1px solid var(--neon-pink);">
+        </div>
+    </section>
+
+    <div class="bowling-cta">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Prenota la tua pista</h2>
+        <p style="color: var(--text-dim); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Non rischiare di rimanere a guardare. Assicurati una corsia per te e il tuo team.</p>
+        <a href="prenotazione.html" class="btn-bowling">Verifica Corsie</a>
+    </div>
+
+    <footer class="site-footer" style="background: rgba(7, 9, 15, 0.95); padding: 80px 5% 40px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto;">
+            <div class="footer-brand">
+                <h2 style="font-weight: 800; color: white;">
+                    <span style="color: #ff0033; text-shadow: 0 0 15px rgba(255, 0, 51, 0.4);">GAME</span> 
+                    <span style="color: var(--neon-blue);">SPOT</span>
+                </h2>
+                <p style="color: #666; max-width: 300px;">Il punto di riferimento per il gaming ad Aprilia.</p>
+            </div>
+            <ul style="list-style:none; padding:0; display: flex; gap: 30px;">
+                <li><a href="index.html" style="color:#666; text-decoration:none;">Home</a></li>
+                <li><a href="biliardo.html" style="color:#666; text-decoration:none;">Biliardo</a></li>
+                <li><a href="dnd-vr.html" style="color:#666; text-decoration:none;">D&D VR</a></li>
+                <li><a href="contatti.html" style="color:#666; text-decoration:none;">Contatti</a></li>
+            </ul>
+        </div>
+        <div style="text-align:center; margin-top: 50px; color: #333; font-size: 0.8rem;">&copy; 2026 Game Spot Aprilia.</div>
+    </footer>
+
+</body>
+</html>

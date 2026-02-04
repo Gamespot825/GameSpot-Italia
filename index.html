@@ -37,18 +37,18 @@
             </div>
         </div>
 
-        <div class="slide">
-            <video autoplay muted loop playsinline class="slide-video">
-                <source src="bowling.mp4" type="video/mp4">
-            </video>
-            <div class="slide-content" onclick="location.href='bowling.html'">
-                <h2>Pista Bowling</h2>
-                <p>Piste hi-tech e atmosfera elettrica.</p>
-            </div>
+       <div class="slide">
+    <video autoplay muted loop playsinline class="slide-video">
+        <source src="bowling.mp4" type="video/mp4">
+    </video>
+    <div class="slide-content" onclick="location.href='bowling.html'">
+        <span class="badge">DISPONIBILE</span>
+        <h2>Neon Bowling</h2>
+        <p>Sfida i tuoi amici tra luci UV e strike epici.</p>
+    </div>
+</div>
         </div>
     </div>
-    <button class="nav-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="nav-arrow next" onclick="changeSlide(1)">&#10095;</button>
     </div>
 
 </div>
@@ -78,53 +78,53 @@
                 </ul>
             </div>
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800" alt="Interior Game Spot">
+                <img src="sala giochi.jpg" alt="Interior Game Spot">
             </div>
         </div>
     </section>
 
     <section id="equipaggiamento">
-        <div class="section-header center">
-            <h2>Le nostre attività</h2>
-            <p>Non scendiamo a compromessi. Qualsiasi cosa tu voglia fare, qui puoi farlo: giocare, entrare nel mondo virtuale e mangiare liberamente</p>
+    <div class="section-header center">
+        <h2>Le nostre attività</h2>
+        <p>Non scendiamo a compromessi. Qualsiasi cosa tu voglia fare, qui puoi farlo: giocare, entrare nel mondo virtuale e mangiare liberamente</p>
+    </div>
+    
+    <div class="grid-container">
+        <div class="tech-card neon-red" onclick="location.href='prenotazione.html'">
+            <div class="icon">🖥️</div>
+            <h3>PC da gaming ad alte prestazioni</h3>
+            <p>Postazioni dedicate al gaming, con PC performanti per giocare in modo fluido e senza compromessi.</p>
         </div>
-        
-        <div class="grid-container">
-            <div class="tech-card neon-blue">
-                <div class="icon">🖥️</div>
-                <h3>PC da gaming ad alte prestazioni</h3>
-                <p>Postazioni dedicate al gaming, con PC performanti per giocare in modo fluido e senza compromessi.</p>
-            </div>
-            <div class="tech-card neon-purple">
-                <div class="icon">🎮</div>
-                <h3>Console Lounge</h3>
-                <p>Area dedicata al gioco su console, comoda e rilassante per divertirsi in compagnia.</p>
-            </div>
-            <div class="tech-card neon-green">
-                <div class="icon">🕶️</div>
-                <h3>VR Zone</h3>
-                <p>Immersione totale con Valve Index e Meta Quest 3 in aree dedicate.</p>
-            </div>
+        <div class="tech-card neon-blue" onclick="location.href='prenotazione.html'">
+            <div class="icon">🎮</div>
+            <h3>Console Lounge</h3>
+            <p>Area dedicata al gioco su console, comoda e rilassante per divertirsi in compagnia.</p>
         </div>
+        <div class="tech-card neon-purple" onclick="location.href='dnd-vr.html'">
+            <div class="icon">🕶️</div>
+            <h3>VR Zone</h3>
+            <p>Immersione totale con Valve Index e Meta Quest 3 in aree dedicate.</p>
+        </div>
+    </div>
 
-        <div class="grid-container" style="margin-top: 30px;">
-            <div class="tech-card neon-blue">
-                <div class="icon"> 🎳</div>
-                <h3>Area Bowling</h3>
-                <p>Piste professionali con luci neon, musica e punteggio automatico.</p>
-            </div>
-            <div class="tech-card neon-purple">
-                <div class="icon">🎱</div>
-                <h3>Area Biliardo</h3>
-                <p>Tavoli da biliardo per divertirsi al meglio con i propri amici.</p>
-            </div>
-            <div class="tech-card neon-green">
-                <div class="icon">🍹</div>
-                <h3>Angolo BAR</h3>
-                <p>Uno spazio dedicato alla pausa, dove puoi gustare la tua bevanda preferita e mangiare qualcosa.</p>
-            </div>
+    <div class="grid-container" style="margin-top: 30px;">
+        <div class="tech-card neon-pink" onclick="location.href='bowling.html'">
+            <div class="icon"> 🎳</div>
+            <h3>Area Bowling</h3>
+            <p>Piste professionali con luci neon, musica e punteggio automatico.</p>
         </div>
-    </section>
+        <div class="tech-card neon-green" onclick="location.href='biliardo.html'">
+            <div class="icon">🎱</div>
+            <h3>Area Biliardo</h3>
+            <p>Tavoli da biliardo per divertirsi al meglio con i propri amici.</p>
+        </div>
+        <div class="tech-card neon-orange" onclick="location.href='bar.html'">
+            <div class="icon">🍹</div>
+            <h3>Angolo BAR</h3>
+            <p>Uno spazio dedicato alla pausa, dove puoi gustare la tua bevanda preferita e mangiare qualcosa.</p>
+        </div>
+    </div>
+</section>
 
     <section id="competizioni">
         <div class="section-header center">
@@ -195,15 +195,15 @@
         <div class="footer-column">
             <h4>Vieni a trovarci</h4>
             <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 10px;">
-                Via Roma 19, Aprilia (LT)<br>
-                Aperti tutti i giorni: 15:00 - 02:00
+               Via Lauri 19, Aprilia (LT)<br>
+                Aperti tutti i giorni: 9:00 - 23:30.
             </p>
             <p style="font-size: 0.9rem; color: var(--neon-blue);">info.gamespot.aprilia@gmail.com</p>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p>&copy; 2026 Game Spot Aprilia. Tutti i diritti riservati.</p>
+        <p>&copy; 2026 Game Spot Aprilia.</p>
         <div class="social-icons">
             <a href="#">Instagram</a>
             <a href="#">TikTok</a>
